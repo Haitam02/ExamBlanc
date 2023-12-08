@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="home.css" />
+    <title>Examen Blanc</title>
+</head>
+
+<body>
+    <h1>Examen Blanc</h1>
+    <h2>Liste des télévisions désirées</h2>
+    <table id="liste1">
+        <thead>
+            <th>Marque </th>
+            <th>Prix </th>
+            <th> Taille </th>
+        </thead>
+        <tbody>
+            <% for(var i=0; i < television1.length; i++) {%>
+                <tr>
+                    <td>
+                        <%= television1[i].marque %>
+                    </td>
+                    <td>
+                        <%= television1[i].prix %>
+                    </td>
+                    <td>
+                        <%= television1[i].taille %>
+
+                    </td>
+                    <td>
+                        <a href="?achete=<%=television1[i].id%>" name="acheté">Acheté</a>
+                    </td>
+
+                </tr>
+
+                <% } %>
+        </tbody>
+    </table>
+
+    <h4>Ajouter une télévision désirée </h4>
+    <p>ajouter une télévision désirée</p>
+    <form action="/add" method="POST">
+        <label>Marque</label>
+        <input id="marque" type="text" name="marque" /><br>
+        <label>Prix</label>
+        <input id="prix" type="text" name="prix" /><br>
+        <label>Taille</label>
+        <input id="taille" type="text" name="taille" /><br>
+        <input type="submit" />
+    </form>
+
+    <h2>Liste des télévisions achetées</h2>
+    <table id="liste2">
+        <thead>
+            <th>ID </th>
+            <th>Marque </th>
+            <th>Prix </th>
+            <th> Taille </th>
+            <th> Raison de casse </th>
+        </thead>
+        <tbody>
+            <% for(var i=0; i < television2.length; i++) {%>
+                <tr>
+                    <td>
+                        <%= television2[i].id %>
+                    </td>
+                    <td>
+                        <%= television2[i].marque %>
+                    </td>
+                    <td>
+                        <%= television2[i].prix %>
+                    </td>
+                    <td>
+                        <%= television2[i].taille %>
+                    </td>
+                    <td>
+                        <%= television2[i].raison %>
+                    </td>
+                    <td>
+                        <form action="/addRaison" method="POST">
+                            <label>Raisons de la casse</label>
+                            <input type="hidden" name="id" value=<%=television2[i].id %> />
+                            <input id="raison" type="text" name=raison />
+                            <input type="submit" />
+                        </form>
+                    </td>
+
+                </tr>
+                <% } %>
+        </tbody>
+    </table><br>
+    <label id="prixTotal">Prix total dépensé: <%= sum%> </label>
+</body>
+
+</html>
